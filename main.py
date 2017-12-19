@@ -19,7 +19,7 @@ form = """
                 border-radius: 10px;
             }}            
             textarea {{
-                margin: 10px;
+                margin: 10px 0;
                 width: 540px;
                 height: 120px;
             }}
