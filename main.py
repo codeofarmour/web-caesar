@@ -37,16 +37,9 @@ form = """
     </html>
 """
 
-def is_integer(rot):
+def is_integer(num):
     try:
-        int(rot)
-        return True
-    except ValueError:
-        return False
-
-def is_alpha(text):
-    try:
-        str(text)
+        int(num)
         return True
     except ValueError:
         return False
@@ -60,28 +53,15 @@ def index():
 def encrypt():
     rot = request.form["rot"]
     text = request.form["text"]
-
-    rot_error = ""
-    text_error = ""
-
+       
     if not is_integer(rot):
         rot_error = "Numbers only please"
-        rot = ""
         return form.format(rot_error=rot_error, text="")
     else:
         rot = int(rot)
         text = cgi.escape(text)
         rotated = rotate_string(text, rot)
-        return form.format(rot_error="", text_error="")
+        return form.format(rot_error="", text=rotated)        
     
-    if not is_alpha(text):    
-        text_error = "Letters only please"
-        text = ""
-        return form.format(text_error=text_error, rot="")
-    else:
-        text = str(text)
-        text = cgi.escape(text)
-        rotated = rotate_string(text, rot)
-        return form.format(rot_error="", text_error="")   
 
 app.run()
